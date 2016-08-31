@@ -13,8 +13,7 @@ defmodule PhoenixWebrtc.UsersChannel do
 
     chat_with = socket
                 |> Presence.list()
-                |> Enum.filter(fn({key, _val}) -> key != socket.assigns.user_id end)
-                |> List.first()
+                |> Enum.find(fn({key, _val}) -> key != socket.assigns.user_id end)
 
     if chat_with do
       {user_id, _} = chat_with
